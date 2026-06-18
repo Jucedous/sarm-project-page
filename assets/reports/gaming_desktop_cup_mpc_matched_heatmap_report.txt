@@ -1,0 +1,40 @@
+Gaming Desktop Cup: Baseline vs SARM MPC Comparison
+
+Video:
+gaming_desktop_cup_on_base_rotated_mpc_comparison_matched_heatmap_camera.mp4
+
+Video metadata:
+- Resolution: 2880x1080
+- Frame rate: 24 fps
+- Frames: 296
+- Duration: 12.33 seconds
+
+Experiment setup:
+- Top row: baseline direct transfer.
+- Bottom row: SARM transport using semantic MPC.
+- Both rows use the current rotated gaming-desktop setup, same pickup, and same final target.
+- The cup/gripper orientation remains fixed after pickup.
+- Columns are normal camera, same camera view with semantic heatmap overlay, and continuous risk statistics.
+
+Run results:
+- Baseline placed object: True
+- Baseline success: True
+- SARM placed object: True
+- SARM success: True
+
+SARM MPC diagnostics:
+- Route kind: mpc
+- Waypoints: [0.456379, -0.386446, 0.549714], [0.590729, -0.252095, 0.549714], [0.590729, -0.062095, 0.549714], [0.590729, 0.032905, 0.549714], [0.523554, 0.19508, 0.549714], [0.341448, 0.249278, 0.54997]
+- MPC iterations: 10
+- MPC rollouts evaluated: 6109
+- MPC terminal distance: 0.000 m
+
+Measured semantic risk improvement:
+- Integrated risk: 0.115272 -> 0.045129
+- Integrated risk reduction: 0.070143, or 60.9 percent
+- Peak risk: 0.229769 -> 0.157843
+- Peak risk reduction: 0.071927, or 31.3 percent
+
+Path:
+- Baseline path length: 0.643 m
+- SARM path length: 0.958 m

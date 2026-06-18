@@ -1,0 +1,64 @@
+Knife And Balloons: Baseline vs SARM Comparison
+
+Video:
+knife_side_to_side_sarm_comparison.mp4
+
+Video metadata:
+- Resolution: 2880x1080
+- Frame rate: 24 fps
+- Frames: 136
+- Duration: 5.67 seconds
+
+Experiment setup:
+- Top row: baseline direct side-to-side knife pass.
+- Bottom row: SARM risk-aware detour around the balloons.
+- Two balloons are placed around the middle of the scene at different heights.
+- The knife starts already held in the gripper and moves from one side of the balloon pair to the other.
+- The video starts with the knife already at its side-start location; no pre-positioning move is recorded.
+- Columns are normal camera, same camera view with semantic heatmap overlay, and continuous risk statistics.
+
+Run results:
+- Baseline completed: True
+- SARM completed: True
+- Baseline final target distance: 0.0 mm
+- SARM final target distance: 0.1 mm
+
+Baseline behavior:
+The baseline moves the knife directly across the gap between the two balloons.
+This route passes through the strongest shared semantic heat field around the middle.
+
+SARM behavior:
+SARM selects a risk-aware detour around the balloon pair before returning to the same target.
+The selected detour waypoints are:
+[-0.5, -0.35, 0.35], [-0.5, 0.35, 0.35]
+
+SARM diagnostics:
+- Route kind: near_side_detour_x0.50
+- Transport mode: sarm_mpc_with_strict_guard
+- MPC attempted: True
+- MPC executed directly: False
+- MPC status: strict_guard_fallback
+- MPC iterations: 2
+- MPC rollouts evaluated: 28
+- MPC terminal distance: 0.000 m
+- Raw MPC integrated/peak risk: 0.313495 / 0.483663
+- Raw MPC path length: 0.982 m
+- Raw MPC minimum clearance: 0.053 m
+- Strict candidate routes checked: 6
+- IK-feasible strict candidate routes: 4
+- Minimum checked SARM clearance: 0.239 m
+- Baseline direct minimum clearance: -0.015 m
+
+Measured semantic risk improvement:
+- Integrated risk: 0.351936 -> 0.102080
+- Integrated risk reduction: 0.249856, or 71.0 percent
+- Peak risk: 0.592312 -> 0.147656
+- Peak risk reduction: 0.444656, or 75.1 percent
+
+Path:
+- Baseline path length: 0.860 m
+- SARM path length: 1.713 m
+
+Conclusion:
+The SARM row trades a longer visible path for lower semantic exposure while still
+ending at the same side-to-side target.

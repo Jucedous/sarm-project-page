@@ -1,0 +1,85 @@
+Cardboard Box And Fire Pit: Baseline vs SARM MPC Comparison
+
+Video:
+cardboard_box_fire_pit_mpc_comparison.mp4
+
+Video metadata:
+- Resolution: 2880x1080
+- Frame rate: 24 fps
+- Frames: 304
+- Duration: 12.67 seconds
+
+Experiment setup:
+- Top row: baseline direct cardboard-box transfer through the central fire-pit heat zone.
+- Bottom row: SARM MPC transfer with the strict semantic detour guard used in the other comparison demos.
+- The carried object is a primitive cardboard-box proxy with matching rectangular visual and collision geometry.
+- The target is a two-cardboard-box proxy stack; the carried box is placed as the third box on top.
+- The fire pit sits between the pickup box and the stack, so the baseline path crosses the fire hazard zone.
+- The middle fire pit uses the real fire_pit.glb asset, bottom-aligned on the table with the flame axis rotated upward.
+- Each row starts recording from the same pre-aligned top-grasp pose, so reset-to-grasp wrist spin is not shown as part of the operation.
+- The robot top-grasps the box, verifies a real physical grasp, then carries it with a deterministic pose lock during scripted waypoint execution.
+- Columns are normal camera, the same camera view with semantic heatmap overlay, and continuous risk statistics.
+
+Object placements:
+- Carried box size: [0.145, 0.072, 0.065] m
+- Start box center: [-0.03, -0.43, 0.0325] m
+- Stack box centers: [[-0.03, 0.43, 0.0325], [-0.03, 0.43, 0.0975]] m
+- Target top-box center: [-0.03, 0.43, 0.1625] m
+- Fire pit center: [-0.03, 0.0, 0.1] m
+- Fire pit asset target size: [0.26, 0.26, 0.2] m
+- Fire pit asset orientation quaternion [w, x, y, z]: [0.7071, 0.7071, 0.0, 0.0]
+- Fire semantic hazard center: [-0.03, 0.0, 0.11] m
+- Transport start TCP: [-0.03, -0.43, 0.365] m
+- Transport pre-place TCP: [-0.03, 0.43, 0.365] m
+
+Run results:
+- Baseline completed: True
+- SARM completed: True
+- Baseline physical grasp registered: True
+- SARM physical grasp registered: True
+- Baseline final target distance: 0.0 mm
+- SARM final target distance: 0.0 mm
+
+Baseline behavior:
+The baseline lifts the cardboard box and carries it directly from the pickup side
+to the stack side. This route crosses the strongest heatmap region above the
+fire pit before lowering the box onto the existing two-box pile.
+
+SARM behavior:
+SARM evaluates a semantic MPC route and applies the strict detour guard when a
+wider route is safer. The selected detour waypoints are:
+[-0.55, -0.33, 0.365], [-0.55, 0.33, 0.365]
+
+SARM diagnostics:
+- Route kind: extra_wide_left_fire_detour
+- Transport mode: sarm_mpc_with_horizontal_fire_detour_guard
+- MPC attempted: True
+- MPC executed directly: False
+- MPC status: strict_guard_fallback
+- MPC iterations: 1
+- MPC rollouts evaluated: 154
+- MPC terminal distance: 0.000 m
+- Raw MPC integrated/peak risk: 0.275103 / 0.371857
+- Raw MPC path length: 0.860 m
+- Raw MPC minimum clearance: 0.086 m
+- Best strict guard route: extra_wide_left_fire_detour
+- Best strict guard integrated/peak risk: 0.266086 / 0.217519
+- Best strict guard minimum clearance: 0.216 m
+- Strict candidate routes checked: 5
+- IK-feasible strict candidate routes: 3
+- Minimum checked SARM clearance: 0.216 m
+- Baseline direct minimum clearance: 0.086 m
+
+Measured semantic risk improvement:
+- Integrated risk: 0.275103 -> 0.266086
+- Integrated risk reduction: 0.009018, or 3.3 percent
+- Peak risk: 0.371857 -> 0.217519
+- Peak risk reduction: 0.154338, or 41.5 percent
+
+Path:
+- Baseline path length: 0.860 m
+- SARM path length: 1.719 m
+
+Conclusion:
+The SARM row uses MPC plus the strict semantic guard to trade a longer path for
+lower exposure around the fire pit while completing the same top-stack placement.

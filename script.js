@@ -1,43 +1,32 @@
-const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
-const demoCards = Array.from(document.querySelectorAll(".demo-card"));
-const contentVideos = Array.from(document.querySelectorAll(".demo-card video"));
-const heroVideo = document.querySelector(".hero-video");
+const filterButtons = document.querySelectorAll("[data-filter]");
+const demoCards = document.querySelectorAll(".demo-card");
 
-function pauseVideo(video) {
-  if (video && !video.paused) {
-    video.pause();
-  }
-}
-
-function applyFilter(selected) {
-  filterButtons.forEach((button) => {
-    const isActive = button.dataset.filter === selected;
-    button.classList.toggle("active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
+function pauseHiddenVideos() {
   demoCards.forEach((card) => {
-    const categories = (card.dataset.category || "").split(/\s+/).filter(Boolean);
-    const shouldShow = selected === "all" || categories.includes(selected);
-    card.hidden = !shouldShow;
-
-    if (!shouldShow) {
-      pauseVideo(card.querySelector("video"));
+    if (!card.hidden) {
+      return;
+    }
+    const video = card.querySelector("video");
+    if (video && !video.paused) {
+      video.pause();
     }
   });
 }
 
 filterButtons.forEach((button) => {
-  button.addEventListener("click", () => applyFilter(button.dataset.filter));
-});
+  button.addEventListener("click", () => {
+    const selected = button.dataset.filter;
 
-contentVideos.forEach((video) => {
-  video.addEventListener("play", () => {
-    contentVideos.forEach((candidate) => {
-      if (candidate !== video) {
-        pauseVideo(candidate);
-      }
+    filterButtons.forEach((candidate) => {
+      candidate.classList.toggle("active", candidate === button);
     });
+
+    demoCards.forEach((card) => {
+      const categories = card.dataset.category || "";
+      card.hidden = selected !== "all" && !categories.split(" ").includes(selected);
+    });
+
+    pauseHiddenVideos();
   });
 });
 
@@ -45,12 +34,9 @@ document.addEventListener("visibilitychange", () => {
   if (!document.hidden) {
     return;
   }
-
-  contentVideos.forEach(pauseVideo);
-  pauseVideo(heroVideo);
+  document.querySelectorAll("video").forEach((video) => {
+    if (!video.paused && !video.classList.contains("hero-video")) {
+      video.pause();
+    }
+  });
 });
-
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-if (reduceMotion.matches) {
-  pauseVideo(heroVideo);
-}

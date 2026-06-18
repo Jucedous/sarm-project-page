@@ -1,0 +1,86 @@
+Flower Vase And Large Fire Pit Table: Baseline vs SARM MPC Comparison
+
+Video:
+flower_vase_fire_pit_table_mpc_comparison.mp4
+
+Video metadata:
+- Resolution: 2880x1080
+- Frame rate: 24 fps
+- Frames: 314
+- Duration: 13.08 seconds
+
+Experiment setup:
+- Top row: baseline direct flower-vase transfer across the central fire pit table.
+- Bottom row: SARM MPC transfer with the strict semantic detour guard used in the other comparison demos.
+- The carried object uses the actual flowers_vase_2.glb visual, scaled as a tabletop vase and kept upright during transport.
+- The middle hazard uses the actual large_fire_pit_table.glb visual, scaled to a plausible tabletop fire-pit table.
+- Both GLB assets are rotated so their authored local height axis points upward in the z-up table scene.
+- Each row starts recording from the same pre-aligned side-grasp pose, so reset-to-grasp wrist spin is not shown as part of the operation.
+- The robot side-grasps the vase body, verifies a real physical grasp, lifts it, transports it, and places it upright on the other side of the table.
+- Columns are normal camera, the same camera view with semantic heatmap overlay, and continuous risk statistics.
+
+Object placements:
+- Vase visual/collision size: [0.078, 0.078, 0.3] m
+- Vase start center: [-0.03, -0.52, 0.15] m
+- Vase target center: [-0.03, 0.52, 0.15] m
+- Large fire pit table center: [0.0, 0.0, 0.07] m
+- Large fire pit table target size: [0.46, 0.18, 0.14] m
+- Fire pit table orientation quaternion [w, x, y, z]: [0.7071, 0.7071, 0.0, 0.0]
+- Fire semantic hazard center: [0.0, 0.0, 0.165] m
+- Fire semantic hazard size: [0.54, 0.34, 0.3] m
+- Vase side-grasp TCP z offset from vase center: -0.060 m
+- Transport start TCP: [-0.03, -0.52, 0.29] m
+- Transport pre-place TCP: [-0.03, 0.52, 0.29] m
+
+Run results:
+- Baseline completed: True
+- SARM completed: True
+- Baseline physical grasp registered: True
+- SARM physical grasp registered: True
+- Baseline final target distance: 0.0 mm
+- SARM final target distance: 0.0 mm
+
+Baseline behavior:
+The baseline side-grasps the flower vase, lifts it from one side of the table,
+and carries it directly across the central fire pit table before placing it on
+the opposite side. This route crosses the strongest heatmap region.
+
+SARM behavior:
+SARM evaluates a semantic MPC route and applies a bounded semantic detour guard
+when the raw MPC proposal is not IK-executable. The selected detour waypoints are:
+[-0.58, -0.42, 0.29], [-0.58, 0.42, 0.29]
+
+SARM diagnostics:
+- Route kind: bounded_left_fire_table_detour
+- Transport mode: sarm_mpc_with_horizontal_fire_pit_table_detour_guard
+- MPC attempted: True
+- MPC executed directly: False
+- MPC status: ik_rejected
+- MPC iterations: 11
+- MPC rollouts evaluated: 4123
+- MPC terminal distance: 0.000 m
+- Raw MPC integrated/peak risk: 0.243972 / 0.260834
+- Raw MPC path length: 2.627 m
+- Raw MPC minimum clearance: 0.196 m
+- Best strict guard route: bounded_left_fire_table_detour
+- Best strict guard integrated/peak risk: 0.323575 / 0.190125
+- Best strict guard minimum clearance: 0.264 m
+- Strict candidate routes checked: 4
+- IK-feasible strict candidate routes: 2
+- Minimum checked SARM clearance: 0.264 m
+- Baseline direct minimum clearance: -0.004 m
+
+Measured semantic risk improvement:
+- Integrated risk: 0.345470 -> 0.323575
+- Integrated risk reduction: 0.021894, or 6.3 percent
+- Peak risk: 0.482688 -> 0.190125
+- Peak risk reduction: 0.292563, or 60.6 percent
+
+Path:
+- Baseline path length: 1.040 m
+- SARM path length: 1.958 m
+
+Conclusion:
+The SARM row uses MPC plus the strict semantic guard to trade a longer path for
+lower exposure around the central fire pit table while completing the same vase
+placement.

@@ -1,0 +1,60 @@
+Move Coffee Cup On Shelf: Baseline vs SARM Comparison
+
+Video:
+baseline_vs_sarm_mpc_comparison.mp4
+
+Video metadata:
+- Resolution: 2880x1080
+- Frame rate: 24 fps
+- Frames: 512
+- Duration: 21.33 seconds
+
+Experiment setup:
+- Top row: baseline straight transfer.
+- Bottom row: SARM risk-aware transfer.
+- Both rows use the same pickup and final target.
+- The coffee cup and gripper orientation remain locked after pickup.
+- The middle column is the semantic heatmap camera view.
+- The right column plots semantic risk over time.
+
+Run results:
+- Baseline placed object: True
+- Baseline success: True
+- SARM placed object: True
+- SARM success: True
+
+Baseline behavior:
+The baseline moves the cup directly from the shelf pickup pose to the shared target.
+This route passes through the semantic hazard field around the printer/paper zone.
+
+SARM behavior:
+SARM selects a visible detour around the high-risk heat zone before returning to the
+same final target. The selected detour waypoint is:
+[-0.025, -0.36, 0.339991]
+
+MPC planner diagnostics:
+- Requested SARM transport mode: sarm_mpc
+- Executed route kind: detour
+- MPC iterations: 9
+- MPC rollouts evaluated: 5791
+- MPC terminal distance: 0.000 m
+- MPC fallback: sarm_safe_collision_guard
+- Raw MPC route rejected by collision guard: -0.004 m at arm_point:shelf_post_1
+- Rejected MPC waypoint count: 9
+
+Measured semantic risk improvement:
+- Integrated risk: 0.123378 -> 0.118026
+- Integrated risk reduction: 0.005351, or 4.3 percent
+- Peak risk: 0.471034 -> 0.303367
+- Peak risk reduction: 0.167667, or 35.6 percent
+
+Path and clearance:
+- Baseline path length: 0.329 m
+- SARM path length: 0.646 m
+- Minimum checked SARM clearance: 0.019 m
+
+Conclusion:
+SARM trades a longer path for a substantially lower peak semantic risk. The peak
+risk reduction is the strongest result in this comparison and is visually clear in
+the heatmap camera: SARM routes around the printer/paper heat zone instead of
+crossing through its center.
