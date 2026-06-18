@@ -1,0 +1,4 @@
+# The page-level <meta name="robots" content="noindex, nofollow">
+# asks compliant search engines not to index this anonymous-review page.
+User-agent: *
+Allow: /

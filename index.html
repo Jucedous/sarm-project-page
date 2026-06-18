@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SARM — Semantic-Aware Safety Evaluation and Planning</title>
+  <meta
+    name="description"
+    content="SARM is a semantic risk-aware planning and validation framework for safe object transport across navigation and Cartesian manipulation backends."
+  >
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#111820">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SARM — Semantic-Aware Safety Evaluation and Planning">
+  <meta
+    property="og:description"
+    content="Semantic risk-aware planning and validation for safe object transport."
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="SARM home">
+      <span class="brand-mark">SARM</span>
+      <span class="brand-note">Anonymous project page</span>
+    </a>
+    <nav class="site-nav" aria-label="Project sections">
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#demos">Videos</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top" aria-labelledby="project-title">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="assets/posters/gaming_desktop_no_stats_hero.jpg"
+        aria-hidden="true"
+      >
+        <source src="assets/videos/gaming_desktop_cup_mpc_no_stats_hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-scrim"></div>
+      <div class="hero-content">
+        <p class="eyebrow light">Semantic risk-aware object transport</p>
+        <h1 id="project-title">Semantic-Aware Safety Evaluation and Planning</h1>
+        <p class="hero-copy">
+          SARM converts contextual object relationships into continuous semantic
+          risk fields. Motion backends retain their own hard feasibility checks
+          while using the same risk signal for search, post-processing,
+          replanning, and dense trajectory validation.
+        </p>
+        <div class="hero-actions" aria-label="Project shortcuts">
+          <a class="button primary" href="#results">View benchmark results</a>
+          <a class="button ghost" href="#demos">Watch qualitative videos</a>
+        </div>
+        <div class="hero-badges" aria-label="Evaluation scope">
+          <span>Navigation: 27 scenes × 3 variants</span>
+          <span>Cartesian transport: 6 tasks × 10 variants</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <p class="eyebrow">Overview</p>
+        <h2 id="overview-title">Semantic safety is graded, contextual, and backend-modular.</h2>
+      </div>
+
+      <div class="overview-grid">
+        <div class="prose large-copy">
+          <p>
+            A geometrically collision-free trajectory can still be unsafe when
+            the transported object changes the consequences of nearby
+            interactions—for example, liquid near electronics, a sharp object
+            near a person or fragile item, or a heavy object near fragile items.
+          </p>
+          <p>
+            SARM represents these contextual hazards as pairwise rules containing
+            a relation type, severity weight, and preferred soft clearance. Each
+            active rule is grounded into a smooth workspace risk contribution,
+            producing a bounded query <strong>r(q,t) ∈ [0,1]</strong> that can be
+            reused by different motion-generation backends.
+          </p>
+        </div>
+
+        <aside class="summary-card" aria-label="SARM scope summary">
+          <p class="summary-label">Core separation</p>
+          <h3>Soft semantic exposure, hard backend feasibility.</h3>
+          <p>
+            Semantic risk shapes the trajectory as a graded cost. Collision,
+            workspace, robot-body, and execution constraints remain the
+            responsibility of the selected backend and are used as hard screening
+            checks during planning. Dense validation separately reports sampled
+            margin violations.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt" id="method" aria-labelledby="method-title">
+      <div class="section-heading">
+        <p class="eyebrow">Method</p>
+        <h2 id="method-title">One semantic risk interface, multiple motion backends.</h2>
+      </div>
+
+      <div class="method-grid">
+        <article class="method-card">
+          <span class="step">01</span>
+          <h3>Pairwise hazard construction</h3>
+          <p>
+            Activate contextual relations between the carried object, robot body,
+            and scene objects, such as liquid–electronic, sharp–human,
+            heavy–fragile, and robot–human.
+          </p>
+        </article>
+        <article class="method-card">
+          <span class="step">02</span>
+          <h3>Continuous risk grounding</h3>
+          <p>
+            Convert soft-clearance residuals into smooth distance-dependent risk
+            values, weighted by the severity of each semantic relation.
+          </p>
+        </article>
+        <article class="method-card">
+          <span class="step">03</span>
+          <h3>Backend-specific feasibility</h3>
+          <p>
+            Use a planar CBF-style clearance backend for navigation and sampled
+            Cartesian workspace/signed-distance checks for carried-object
+            manipulation.
+          </p>
+        </article>
+        <article class="method-card">
+          <span class="step">04</span>
+          <h3>Planning and validation</h3>
+          <p>
+            Query the same semantic signal during A* search, shortcut smoothing,
+            receding-horizon planning, dynamic replanning, and dense final-trajectory
+            evaluation.
+          </p>
+        </article>
+      </div>
+
+      <div class="equation-panel" aria-label="Semantic hazard and risk equations">
+        <div>
+          <p class="equation-label">Pairwise rule</p>
+          <p class="equation">h<sub>ij</sub> = (o<sub>i</sub>, o<sub>j</sub>, α<sub>ij</sub>, w<sub>ij</sub>, d<sub>ij</sub><sup>soft</sup>)</p>
+        </div>
+        <div>
+          <p class="equation-label">Soft-clearance residual</p>
+          <p class="equation">ε<sub>ij</sub>(q,t) = d<sub>ij</sub>(q,t) − d<sub>ij</sub><sup>soft</sup></p>
+        </div>
+        <div>
+          <p class="equation-label">Smooth pairwise risk</p>
+          <p class="equation">r̂<sub>ij</sub>(q,t) = σ(−ε<sub>ij</sub>(q,t) / η<sub>ij</sub>)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results" aria-labelledby="results-title">
+      <div class="section-heading wide-heading">
+        <div>
+          <p class="eyebrow">Experiments and results</p>
+          <h2 id="results-title">Two benchmarks test the same semantic representation.</h2>
+        </div>
+        <p class="heading-note">
+          Values below reproduce the paper tables. Non-success metrics are mean
+          ± standard deviation over successful trials.
+        </p>
+      </div>
+
+      <article class="benchmark" aria-labelledby="navigation-title">
+        <div class="benchmark-header">
+          <div>
+            <p class="benchmark-kicker">Navigation-style semantic transport</p>
+            <h3 id="navigation-title">81 trials per method: static, bottleneck, and dynamic scenes</h3>
+          </div>
+          <div class="stat-strip" aria-label="Navigation headline results">
+            <div><strong>81/81</strong><span>SARM successes</span></div>
+            <div><strong>−64.7%</strong><span>distance exposure vs Geom-A*</span></div>
+            <div><strong>−60.7%</strong><span>time exposure vs Geom-A*</span></div>
+          </div>
+        </div>
+        <p class="benchmark-copy">
+          The benchmark contains 27 scene specifications with three randomized
+          variants each. SARM preserves the full success rate of geometry-only A*
+          while reducing semantic exposure; hard semantic blocking becomes
+          infeasible in many narrow or dynamic scenes.
+        </p>
+
+        <div class="table-wrap" role="region" aria-label="Navigation benchmark table" tabindex="0">
+          <table>
+            <caption>Overall raw navigation benchmark results</caption>
+            <thead>
+              <tr>
+                <th scope="col">Method</th>
+                <th scope="col">Success</th>
+                <th scope="col">L (m)</th>
+                <th scope="col">T (s)</th>
+                <th scope="col">E<sub>d</sub></th>
+                <th scope="col">E<sub>t</sub></th>
+                <th scope="col">Z<sub>d</sub> (m)</th>
+                <th scope="col">Z<sub>t</sub> (s)</th>
+                <th scope="col">Turn/m</th>
+                <th scope="col">Plan (ms)</th>
+                <th scope="col">Margin viol.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Geom-A*</th>
+                <td>81/81</td>
+                <td>11.477 ± 1.823</td>
+                <td>19.129 ± 3.038</td>
+                <td>1.197 ± 0.676</td>
+                <td>1.987 ± 1.079</td>
+                <td>2.942 ± 1.857</td>
+                <td>4.786 ± 2.883</td>
+                <td>0.113 ± 0.071</td>
+                <td>120.0 ± 39.3</td>
+                <td>0.062</td>
+              </tr>
+              <tr>
+                <th scope="row">Hard Risk Block</th>
+                <td>49/81</td>
+                <td>12.452 ± 2.539</td>
+                <td>22.888 ± 6.973</td>
+                <td>0.437 ± 0.394</td>
+                <td>0.831 ± 0.766</td>
+                <td>0.952 ± 1.286</td>
+                <td>1.578 ± 2.132</td>
+                <td>0.270 ± 0.767</td>
+                <td>247.0 ± 187.6</td>
+                <td>0.082</td>
+              </tr>
+              <tr class="highlight-row">
+                <th scope="row">SARM</th>
+                <td>81/81</td>
+                <td>12.232 ± 2.480</td>
+                <td>22.340 ± 7.490</td>
+                <td>0.423 ± 0.497</td>
+                <td>0.781 ± 0.998</td>
+                <td>0.640 ± 1.313</td>
+                <td>1.217 ± 2.797</td>
+                <td>0.204 ± 0.153</td>
+                <td>242.8 ± 196.2</td>
+                <td>0.111</td>
+              </tr>
+              <tr>
+                <th scope="row">Semantic Inflation</th>
+                <td>73/81</td>
+                <td>12.012 ± 1.868</td>
+                <td>20.020 ± 3.114</td>
+                <td>0.708 ± 0.547</td>
+                <td>1.240 ± 0.941</td>
+                <td>1.325 ± 1.448</td>
+                <td>2.401 ± 2.641</td>
+                <td>0.130 ± 0.085</td>
+                <td>123.5 ± 42.0</td>
+                <td>0.068</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Lower is better except for success. Margin violations are averaged
+          dense-validation sample counts.
+        </p>
+      </article>
+
+      <article class="benchmark" aria-labelledby="manipulation-title">
+        <div class="benchmark-header">
+          <div>
+            <p class="benchmark-kicker">Manipulation-style Cartesian transport</p>
+            <h3 id="manipulation-title">60 trials per method: six tabletop tasks</h3>
+          </div>
+          <div class="stat-strip" aria-label="Manipulation headline results">
+            <div><strong>60/60</strong><span>SARM-A* and SARM-MPC successes</span></div>
+            <div><strong>−38.3%</strong><span>A* exposure vs Direct TCP</span></div>
+            <div><strong>−21.5%</strong><span>MPC exposure vs Direct TCP</span></div>
+          </div>
+        </div>
+        <p class="benchmark-copy">
+          This numerical benchmark evaluates the lifted object-transfer phase in
+          Cartesian task space before whole-arm execution. SARM-A* gives the
+          lowest-risk paths, while SARM-MPC provides a faster receding-horizon
+          tradeoff with shorter paths.
+        </p>
+
+        <div class="table-wrap" role="region" aria-label="Manipulation benchmark table" tabindex="0">
+          <table>
+            <caption>Manipulation-style Cartesian transport benchmark</caption>
+            <thead>
+              <tr>
+                <th scope="col">Method</th>
+                <th scope="col">Success</th>
+                <th scope="col">Semantic exposure</th>
+                <th scope="col">Peak risk</th>
+                <th scope="col">L (m)</th>
+                <th scope="col">Plan (s)</th>
+                <th scope="col">Replans/iters.</th>
+                <th scope="col">Waypoints</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Direct TCP</th>
+                <td>50/60</td>
+                <td>0.244 ± 0.133</td>
+                <td>0.496 ± 0.116</td>
+                <td>0.681 ± 0.343</td>
+                <td>0.0010 ± 0.0007</td>
+                <td>0.00 ± 0.00</td>
+                <td>1.00 ± 0.00</td>
+              </tr>
+              <tr class="highlight-row">
+                <th scope="row">SARM-A*</th>
+                <td>60/60</td>
+                <td>0.151 ± 0.071</td>
+                <td>0.273 ± 0.128</td>
+                <td>1.908 ± 1.130</td>
+                <td>6.877 ± 6.162</td>
+                <td>0.00 ± 0.00</td>
+                <td>2.33 ± 0.75</td>
+              </tr>
+              <tr class="highlight-row secondary-highlight">
+                <th scope="row">SARM-MPC</th>
+                <td>60/60</td>
+                <td>0.192 ± 0.095</td>
+                <td>0.330 ± 0.112</td>
+                <td>1.011 ± 0.578</td>
+                <td>0.433 ± 0.542</td>
+                <td>9.30 ± 6.55</td>
+                <td>9.38 ± 6.54</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">
+          Lower is better for exposure, peak risk, path length, and planning time.
+          Replans/iterations and waypoint count describe the offline Cartesian
+          benchmark behavior.
+        </p>
+      </article>
+    </section>
+
+    <section class="section alt" id="demos" aria-labelledby="demos-title">
+      <div class="section-heading wide-heading demo-heading-row">
+        <div>
+          <p class="eyebrow">Qualitative videos</p>
+          <h2 id="demos-title">Whole-arm simulation examples across semantic contexts.</h2>
+        </div>
+        <div class="filters" aria-label="Filter videos by hazard category">
+          <button class="filter active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" type="button" data-filter="electronics" aria-pressed="false">Electronics</button>
+          <button class="filter" type="button" data-filter="sharp" aria-pressed="false">Sharp / fragile</button>
+          <button class="filter" type="button" data-filter="heat" aria-pressed="false">Heat / flammable</button>
+        </div>
+      </div>
+
+      <div class="scope-note">
+        <strong>Scope of these videos.</strong>
+        They are supplemental whole-arm simulations that reuse the SARM risk field
+        with backend-specific IK, collision, and guarded waypoint execution. They
+        are not the seeded 60-trial offline Cartesian benchmark summarized above.
+        The plots embedded in the videos are online demo diagnostics and should not
+        be read as the aggregate paper-table metrics.
+      </div>
+
+      <div class="demo-grid">
+        <article class="demo-card featured-demo" data-category="electronics">
+          <video controls preload="metadata" poster="assets/posters/can_sponge_laptop.jpg">
+            <source src="assets/videos/can_sponge_laptop_grid_no_stats_matched_heatmap.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Object-dependent hazard activation</p>
+            <h3>Soda can and dry sponge over a laptop</h3>
+            <p>
+              The matched-view comparison shows that the same laptop scene can
+              induce different risk fields depending on the transported object:
+              the dry sponge remains semantically neutral, while the liquid-bearing
+              can activates the liquid–electronic relation.
+            </p>
+          </div>
+        </article>
+
+        <article class="demo-card" data-category="electronics">
+          <video controls preload="metadata" poster="assets/posters/gaming_desktop.jpg">
+            <source src="assets/videos/gaming_desktop_cup_mpc_matched_heatmap.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Liquid near electronics</p>
+            <h3>Gaming desktop: direct transfer vs SARM-MPC</h3>
+            <p>
+              The direct Cartesian transfer crosses the strongest electronic-risk
+              region. The receding-horizon SARM backend chooses a longer,
+              lower-exposure route while reaching the same target.
+            </p>
+          </div>
+        </article>
+
+        <article class="demo-card" data-category="electronics">
+          <video controls preload="metadata" poster="assets/posters/coffee_shelf.jpg">
+            <source src="assets/videos/coffee_shelf_baseline_vs_sarm_mpc.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Liquid near printer and paper</p>
+            <h3>Coffee shelf: direct transfer vs guarded SARM route</h3>
+            <p>
+              A backend-specific collision guard rejects an infeasible raw proposal
+              and executes a risk-aware detour around the printer/paper hazard zone
+              before returning to the shared goal.
+            </p>
+          </div>
+        </article>
+
+        <article class="demo-card" data-category="sharp">
+          <video controls preload="metadata" poster="assets/posters/knife_balloons.jpg">
+            <source src="assets/videos/knife_balloons_sarm_comparison.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Sharp object near fragile objects</p>
+            <h3>Knife and balloons: guarded semantic detour</h3>
+            <p>
+              The direct pass enters the strongest shared risk region. The SARM
+              backend uses a wider waypoint route around the balloon pair while
+              preserving the same start and target.
+            </p>
+          </div>
+        </article>
+
+        <article class="demo-card" data-category="heat sharp">
+          <video controls preload="metadata" poster="assets/posters/candle_balloon_paper_book.jpg">
+            <source src="assets/videos/candle_balloon_paper_book_mpc_comparison.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Flame near balloon, paper, and book</p>
+            <h3>Candle transport: complete pickup-to-place operation</h3>
+            <p>
+              The candle is grasped, lifted, carried, and placed upright. A guarded
+              SARM detour reduces exposure to the central semantic field while the
+              whole-arm backend maintains execution feasibility.
+            </p>
+          </div>
+        </article>
+
+        <article class="demo-card" data-category="heat">
+          <video controls preload="metadata" poster="assets/posters/cardboard_box_fire_pit.jpg">
+            <source src="assets/videos/cardboard_box_fire_pit_mpc_comparison.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Flammable object near open flame</p>
+            <h3>Cardboard box and fire pit: stack transfer</h3>
+            <p>
+              The direct route crosses the fire-related risk field. The guarded
+              SARM route takes a wider side path before placing the box on the same
+              target stack.
+            </p>
+          </div>
+        </article>
+
+        <article class="demo-card" data-category="heat sharp">
+          <video controls preload="metadata" poster="assets/posters/flower_vase_fire_pit_table.jpg">
+            <source src="assets/videos/flower_vase_fire_pit_table_mpc_comparison.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="demo-body">
+            <p class="demo-tag">Heat-related context for a fragile carried object</p>
+            <h3>Flower vase and fire-pit table: bounded detour</h3>
+            <p>
+              The side-grasped vase is transported upright across the table. When
+              the raw receding-horizon proposal is not IK-executable, the backend
+              selects a bounded lower-risk detour around the central heat field.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>SARM</strong> — anonymous supplemental project page.</p>
+    <p>Semantic-Aware Safety Evaluation and Planning</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
