@@ -147,6 +147,13 @@ h3 {
   align-items: start;
 }
 
+.metric-explainer {
+  max-width: 860px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
 .two-column {
   width: min(1120px, 100%);
   margin: 0 auto;
@@ -310,14 +317,14 @@ h3 {
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
-  margin: 18px 0;
+  margin: 14px 0 0;
 }
 
 .metrics div {
-  min-height: 76px;
-  padding: 12px;
+  min-height: 54px;
+  padding: 9px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfaf7;
@@ -325,14 +332,16 @@ h3 {
 
 .metrics dt {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 760;
 }
 
 .metrics dd {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   color: var(--ink);
+  font-size: 0.94rem;
   font-weight: 850;
+  white-space: nowrap;
 }
 
 @media (max-width: 980px) {
@@ -348,6 +357,10 @@ h3 {
 
   .filters {
     margin-top: 20px;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -394,10 +407,6 @@ h3 {
 
   .filter {
     width: auto;
-  }
-
-  .metrics {
-    grid-template-columns: 1fr;
   }
 
   .demo-card.wide-demo video {

@@ -35,12 +35,12 @@ same final target. The selected detour waypoint is:
 MPC planner diagnostics:
 - Requested SARM transport mode: sarm_mpc
 - Executed route kind: detour
-- MPC iterations: 9
-- MPC rollouts evaluated: 5791
+- MPC iterations: 8
+- MPC rollouts evaluated: 5153
 - MPC terminal distance: 0.000 m
 - MPC fallback: sarm_safe_collision_guard
 - Raw MPC route rejected by collision guard: -0.004 m at arm_point:shelf_post_1
-- Rejected MPC waypoint count: 9
+- Rejected MPC waypoint count: 8
 
 Measured semantic risk improvement:
 - Integrated risk: 0.123378 -> 0.118026

@@ -55,13 +55,13 @@ SARM diagnostics:
 - Transport mode: sarm_mpc_with_horizontal_fire_pit_table_detour_guard
 - MPC attempted: True
 - MPC executed directly: False
-- MPC status: ik_rejected
-- MPC iterations: 11
-- MPC rollouts evaluated: 4123
+- MPC status: failed
+- MPC iterations: 0
+- MPC rollouts evaluated: 0
 - MPC terminal distance: 0.000 m
-- Raw MPC integrated/peak risk: 0.243972 / 0.260834
-- Raw MPC path length: 2.627 m
-- Raw MPC minimum clearance: 0.196 m
+- Raw MPC integrated/peak risk: 0.000000 / 0.000000
+- Raw MPC path length: 0.000 m
+- Raw MPC minimum clearance: 0.000 m
 - Best strict guard route: bounded_left_fire_table_detour
 - Best strict guard integrated/peak risk: 0.323575 / 0.190125
 - Best strict guard minimum clearance: 0.264 m

@@ -118,6 +118,12 @@
         <div>
           <p class="eyebrow">Demo Videos</p>
           <h2>Manipulation-style semantic transport studies.</h2>
+          <p class="metric-explainer">
+            Overall risk accumulates semantic exposure over the transport. Mean
+            risk normalizes that exposure by path length, so longer detours are
+            compared by average exposure. Peak risk reports the worst moment
+            along the route.
+          </p>
         </div>
         <div class="filters" aria-label="Demo filters">
           <button class="filter active" type="button" data-filter="all">All</button>
@@ -146,8 +152,8 @@
         </article>
 
         <article class="demo-card wide-demo" data-category="electronics desktop">
-          <video controls preload="metadata" poster="assets/posters/gaming_desktop.jpg">
-            <source src="assets/videos/gaming_desktop_cup_mpc_matched_heatmap.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="assets/posters/gaming_desktop.jpg?v=metric-cards-20260624">
+            <source src="assets/videos/gaming_desktop_cup_mpc_matched_heatmap.mp4?v=metric-cards-20260624" type="video/mp4">
           </video>
           <div class="demo-body">
             <div class="demo-heading">
@@ -160,15 +166,16 @@
               MPC selecting a longer route around the risk field.
             </p>
             <dl class="metrics">
-              <div><dt>Mean exposure</dt><dd>0.179 -> 0.047</dd></div>
-              <div><dt>Reduction</dt><dd>73.7%</dd></div>
+              <div><dt>Overall risk (over time)</dt><dd>0.115 -> 0.045, 60.9% lower</dd></div>
+              <div><dt>Mean risk</dt><dd>0.179 -> 0.047, 73.7% lower</dd></div>
+              <div><dt>Peak risk</dt><dd>0.230 -> 0.158, 31.3% lower</dd></div>
             </dl>
           </div>
         </article>
 
         <article class="demo-card wide-demo" data-category="electronics">
-          <video controls preload="metadata" poster="assets/posters/coffee_shelf.jpg">
-            <source src="assets/videos/coffee_shelf_baseline_vs_sarm_mpc.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="assets/posters/coffee_shelf.jpg?v=metric-cards-20260624">
+            <source src="assets/videos/coffee_shelf_baseline_vs_sarm_mpc.mp4?v=metric-cards-20260624" type="video/mp4">
           </video>
           <div class="demo-body">
             <div class="demo-heading">
@@ -181,15 +188,16 @@
               path length for lower peak semantic exposure.
             </p>
             <dl class="metrics">
-              <div><dt>Mean exposure</dt><dd>0.375 -> 0.183</dd></div>
-              <div><dt>Reduction</dt><dd>51.3%</dd></div>
+              <div><dt>Overall risk (over time)</dt><dd>0.123 -> 0.118, 4.3% lower</dd></div>
+              <div><dt>Mean risk</dt><dd>0.375 -> 0.183, 51.3% lower</dd></div>
+              <div><dt>Peak risk</dt><dd>0.471 -> 0.303, 35.6% lower</dd></div>
             </dl>
           </div>
         </article>
 
         <article class="demo-card wide-demo" data-category="sharp">
-          <video controls preload="metadata" poster="assets/posters/knife_balloons.jpg">
-            <source src="assets/videos/knife_balloons_sarm_comparison.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="assets/posters/knife_balloons.jpg?v=metric-cards-20260624">
+            <source src="assets/videos/knife_balloons_sarm_comparison.mp4?v=metric-cards-20260624" type="video/mp4">
           </video>
           <div class="demo-body">
             <div class="demo-heading">
@@ -202,15 +210,16 @@
               SARM chooses a guarded detour around the balloon pair.
             </p>
             <dl class="metrics">
-              <div><dt>Mean exposure</dt><dd>0.409 -> 0.060</dd></div>
-              <div><dt>Reduction</dt><dd>85.4%</dd></div>
+              <div><dt>Overall risk (over time)</dt><dd>0.352 -> 0.102, 71.0% lower</dd></div>
+              <div><dt>Mean risk</dt><dd>0.409 -> 0.060, 85.4% lower</dd></div>
+              <div><dt>Peak risk</dt><dd>0.592 -> 0.148, 75.1% lower</dd></div>
             </dl>
           </div>
         </article>
 
         <article class="demo-card wide-demo" data-category="flammable">
-          <video controls preload="metadata" poster="assets/posters/candle_balloon_paper_book.jpg">
-            <source src="assets/videos/candle_balloon_paper_book_mpc_comparison.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="assets/posters/candle_balloon_paper_book.jpg?v=metric-cards-20260624">
+            <source src="assets/videos/candle_balloon_paper_book_mpc_comparison.mp4?v=metric-cards-20260624" type="video/mp4">
           </video>
           <div class="demo-body">
             <div class="demo-heading">
@@ -224,15 +233,16 @@
               strict detour guard around the balloon, paper stack, and book.
             </p>
             <dl class="metrics">
-              <div><dt>Mean exposure</dt><dd>0.384 -> 0.105</dd></div>
-              <div><dt>Reduction</dt><dd>72.8%</dd></div>
+              <div><dt>Overall risk (over time)</dt><dd>0.357 -> 0.182, 49.1% lower</dd></div>
+              <div><dt>Mean risk</dt><dd>0.384 -> 0.105, 72.8% lower</dd></div>
+              <div><dt>Peak risk</dt><dd>0.617 -> 0.150, 75.8% lower</dd></div>
             </dl>
           </div>
         </article>
 
         <article class="demo-card wide-demo" data-category="flammable">
-          <video controls preload="metadata" poster="assets/posters/cardboard_box_fire_pit.jpg">
-            <source src="assets/videos/cardboard_box_fire_pit_mpc_comparison.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="assets/posters/cardboard_box_fire_pit.jpg?v=metric-cards-20260624">
+            <source src="assets/videos/cardboard_box_fire_pit_mpc_comparison.mp4?v=metric-cards-20260624" type="video/mp4">
           </video>
           <div class="demo-body">
             <div class="demo-heading">
@@ -245,15 +255,16 @@
               SARM/MPC with a semantic guard detours around it.
             </p>
             <dl class="metrics">
-              <div><dt>Mean exposure</dt><dd>0.320 -> 0.155</dd></div>
-              <div><dt>Reduction</dt><dd>51.6%</dd></div>
+              <div><dt>Overall risk (over time)</dt><dd>0.275 -> 0.266, 3.3% lower</dd></div>
+              <div><dt>Mean risk</dt><dd>0.320 -> 0.155, 51.6% lower</dd></div>
+              <div><dt>Peak risk</dt><dd>0.372 -> 0.218, 41.5% lower</dd></div>
             </dl>
           </div>
         </article>
 
         <article class="demo-card wide-demo" data-category="flammable">
-          <video controls preload="metadata" poster="assets/posters/flower_vase_fire_pit_table.jpg">
-            <source src="assets/videos/flower_vase_fire_pit_table_mpc_comparison.mp4" type="video/mp4">
+          <video controls preload="metadata" poster="assets/posters/flower_vase_fire_pit_table.jpg?v=metric-cards-20260624">
+            <source src="assets/videos/flower_vase_fire_pit_table_mpc_comparison.mp4?v=metric-cards-20260624" type="video/mp4">
           </video>
           <div class="demo-body">
             <div class="demo-heading">
@@ -267,8 +278,9 @@
               detour guard.
             </p>
             <dl class="metrics">
-              <div><dt>Mean exposure</dt><dd>0.332 -> 0.165</dd></div>
-              <div><dt>Reduction</dt><dd>50.3%</dd></div>
+              <div><dt>Overall risk (over time)</dt><dd>0.345 -> 0.324, 6.3% lower</dd></div>
+              <div><dt>Mean risk</dt><dd>0.332 -> 0.165, 50.3% lower</dd></div>
+              <div><dt>Peak risk</dt><dd>0.483 -> 0.190, 60.6% lower</dd></div>
             </dl>
           </div>
         </article>
