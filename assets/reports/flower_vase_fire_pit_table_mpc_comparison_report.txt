@@ -6,8 +6,8 @@ flower_vase_fire_pit_table_mpc_comparison.mp4
 Video metadata:
 - Resolution: 2880x1080
 - Frame rate: 24 fps
-- Frames: 314
-- Duration: 13.08 seconds
+- Frames: 315
+- Duration: 13.12 seconds
 
 Experiment setup:
 - Top row: baseline direct flower-vase transfer across the central fire pit table.
@@ -71,8 +71,9 @@ SARM diagnostics:
 - Baseline direct minimum clearance: -0.004 m
 
 Measured semantic risk improvement:
-- Integrated risk: 0.345470 -> 0.323575
-- Integrated risk reduction: 0.021894, or 6.3 percent
+- Normalized semantic exposure: 0.332182 -> 0.165255
+- Risk reduction: 0.166927, or 50.3 percent
+- Raw distance-integrated exposure: 0.345470 -> 0.323575
 - Peak risk: 0.482688 -> 0.190125
 - Peak risk reduction: 0.292563, or 60.6 percent
 

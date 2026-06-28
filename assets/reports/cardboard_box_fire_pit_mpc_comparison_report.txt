@@ -6,8 +6,8 @@ cardboard_box_fire_pit_mpc_comparison.mp4
 Video metadata:
 - Resolution: 2880x1080
 - Frame rate: 24 fps
-- Frames: 304
-- Duration: 12.67 seconds
+- Frames: 305
+- Duration: 12.71 seconds
 
 Experiment setup:
 - Top row: baseline direct cardboard-box transfer through the central fire-pit heat zone.
@@ -71,8 +71,9 @@ SARM diagnostics:
 - Baseline direct minimum clearance: 0.086 m
 
 Measured semantic risk improvement:
-- Integrated risk: 0.275103 -> 0.266086
-- Integrated risk reduction: 0.009018, or 3.3 percent
+- Normalized semantic exposure: 0.319888 -> 0.154786
+- Risk reduction: 0.165102, or 51.6 percent
+- Raw distance-integrated exposure: 0.275103 -> 0.266086
 - Peak risk: 0.371857 -> 0.217519
 - Peak risk reduction: 0.154338, or 41.5 percent
 

@@ -6,8 +6,8 @@ baseline_vs_sarm_mpc_comparison.mp4
 Video metadata:
 - Resolution: 2880x1080
 - Frame rate: 24 fps
-- Frames: 512
-- Duration: 21.33 seconds
+- Frames: 513
+- Duration: 21.38 seconds
 
 Experiment setup:
 - Top row: baseline straight transfer.
@@ -30,27 +30,28 @@ This route passes through the semantic hazard field around the printer/paper zon
 SARM behavior:
 SARM selects a visible detour around the high-risk heat zone before returning to the
 same final target. The selected detour waypoint is:
-[-0.025, -0.36, 0.339991]
+[-0.025, -0.36, 0.39]
 
 MPC planner diagnostics:
 - Requested SARM transport mode: sarm_mpc
 - Executed route kind: detour
-- MPC iterations: 8
-- MPC rollouts evaluated: 5153
+- MPC iterations: 24
+- MPC rollouts evaluated: 19157
 - MPC terminal distance: 0.000 m
 - MPC fallback: sarm_safe_collision_guard
-- Raw MPC route rejected by collision guard: -0.004 m at arm_point:shelf_post_1
-- Rejected MPC waypoint count: 8
+- Raw MPC route rejected by collision guard: -inf m at ik_failed
+- Rejected MPC waypoint count: 24
 
 Measured semantic risk improvement:
-- Integrated risk: 0.123378 -> 0.118026
-- Integrated risk reduction: 0.005351, or 4.3 percent
-- Peak risk: 0.471034 -> 0.303367
-- Peak risk reduction: 0.167667, or 35.6 percent
+- Normalized semantic exposure: 0.646926 -> 0.228024
+- Risk reduction: 0.418902, or 64.8 percent
+- Raw distance-integrated exposure: 0.212724 -> 0.149107
+- Peak risk: 0.849069 -> 0.366858
+- Peak risk reduction: 0.482210, or 56.8 percent
 
 Path and clearance:
 - Baseline path length: 0.329 m
-- SARM path length: 0.646 m
+- SARM path length: 0.654 m
 - Minimum checked SARM clearance: 0.019 m
 
 Conclusion:

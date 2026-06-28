@@ -6,8 +6,8 @@ candle_balloon_paper_book_mpc_comparison.mp4
 Video metadata:
 - Resolution: 2880x1080
 - Frame rate: 24 fps
-- Frames: 280
-- Duration: 11.67 seconds
+- Frames: 281
+- Duration: 11.71 seconds
 
 Experiment setup:
 - Top row: baseline direct side-to-side candle transfer.
@@ -66,8 +66,9 @@ SARM diagnostics:
 - Baseline direct minimum clearance: -0.056 m
 
 Measured semantic risk improvement:
-- Integrated risk: 0.357439 -> 0.181799
-- Integrated risk reduction: 0.175640, or 49.1 percent
+- Normalized semantic exposure: 0.384343 -> 0.104689
+- Risk reduction: 0.279654, or 72.8 percent
+- Raw distance-integrated exposure: 0.357439 -> 0.181799
 - Peak risk: 0.617346 -> 0.149655
 - Peak risk reduction: 0.467691, or 75.8 percent
 

@@ -6,8 +6,8 @@ gaming_desktop_cup_on_base_rotated_mpc_comparison_matched_heatmap_camera.mp4
 Video metadata:
 - Resolution: 2880x1080
 - Frame rate: 24 fps
-- Frames: 296
-- Duration: 12.33 seconds
+- Frames: 297
+- Duration: 12.38 seconds
 
 Experiment setup:
 - Top row: baseline direct transfer.
@@ -30,8 +30,9 @@ SARM MPC diagnostics:
 - MPC terminal distance: 0.000 m
 
 Measured semantic risk improvement:
-- Integrated risk: 0.115272 -> 0.045129
-- Integrated risk reduction: 0.070143, or 60.9 percent
+- Normalized semantic exposure: 0.179151 -> 0.047112
+- Risk reduction: 0.132039, or 73.7 percent
+- Raw distance-integrated exposure: 0.115272 -> 0.045129
 - Peak risk: 0.229769 -> 0.157843
 - Peak risk reduction: 0.071927, or 31.3 percent
 

@@ -50,8 +50,9 @@ SARM diagnostics:
 - Baseline direct minimum clearance: -0.015 m
 
 Measured semantic risk improvement:
-- Integrated risk: 0.351936 -> 0.102080
-- Integrated risk reduction: 0.249856, or 71.0 percent
+- Normalized semantic exposure: 0.409228 -> 0.059601
+- Risk reduction: 0.349627, or 85.4 percent
+- Raw distance-integrated exposure: 0.351936 -> 0.102080
 - Peak risk: 0.592312 -> 0.147656
 - Peak risk reduction: 0.444656, or 75.1 percent
 
